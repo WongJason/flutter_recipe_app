@@ -5,7 +5,7 @@ import 'package:recipeapp/themes/theme_manager.dart';
 import 'screens/home_screen.dart';
 
 void main() => runApp(ChangeNotifierProvider<ThemeManager>(
-    builder: (context) => ThemeManager(), child: MyApp()));
+    create: (context) => ThemeManager(), child: MyApp()));
 
 class MyApp extends StatelessWidget {
   @override

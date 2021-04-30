@@ -41,10 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _fetchRecipeSections() {
     RecipeService recipeService = RecipeService();
-    breakfasts = recipeService.getRecipe(_getRecipeCategory(RecipeSection.BREAKFAST), 20);
-    lunch = recipeService.getRecipe(_getRecipeCategory(RecipeSection.LUNCH), 20);
-    dinner = recipeService.getRecipe(_getRecipeCategory(RecipeSection.DINNER), 20);
-    dessert = recipeService.getRecipe(_getRecipeCategory(RecipeSection.DESSERT), 20);
+    breakfasts = recipeService.getRecipe(
+        _getRecipeCategory(RecipeSection.BREAKFAST), 20);
+    lunch =
+        recipeService.getRecipe(_getRecipeCategory(RecipeSection.LUNCH), 20);
+    dinner =
+        recipeService.getRecipe(_getRecipeCategory(RecipeSection.DINNER), 20);
+    dessert =
+        recipeService.getRecipe(_getRecipeCategory(RecipeSection.DESSERT), 20);
   }
 
   Future<List<Recipe>> _getRecipeList(RecipeSection recipeSection) {
@@ -96,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 15.0,
               ),
               Container(
-                height: MediaQuery.of(context).size.height / 3,
+                height: MediaQuery.of(context).size.height / 2.5,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: homeRecipeAmount + 1,
@@ -113,7 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
                                 return SearchResultScreen(
-                                    recipeList: snapshot.data, searchTerm: category);
+                                    recipeList: snapshot.data,
+                                    searchTerm: category);
                               }));
                             },
                             icon: Icon(
@@ -146,10 +151,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Hero(
                                 tag: recipe.heroTag,
-                                child: Image(
-                                  height: MediaQuery.of(context).size.height / 4,
-                                  width: MediaQuery.of(context).size.height / 4,
+                                child: FadeInImage(
+                                  fit: BoxFit.cover,
+                                  placeholder:
+                                      AssetImage('images/chefs-hat.png'),
                                   image: NetworkImage(recipe.recipeImageUrl),
+                                  height:
+                                      MediaQuery.of(context).size.height / 4,
+                                  width: MediaQuery.of(context).size.height / 4,
                                 ),
                               ),
                             ),
